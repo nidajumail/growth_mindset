@@ -26,18 +26,20 @@ uploaded_file = st.file_uploader("Upload your files (accepts CSV and Excel):", t
 
 if uploaded_file:
     for file in uploaded_file:
-      file_ext = os.path.splitext(file.name)[-1].lower()
+        file_ext = os.path.splitext(file.name)[-1].lower()
 
-      if file_ext == ".csv":
-        df = pd.read_csv(file)
-      elif file_ext == ".xlsx":
-        df = pd.read_excel(file)
-      else:
-         st.error(f"Unsupported file type{file_ext}")
-         continue
-     # file details
-st.write("🔍 Preview the head of the dataframe")
-st.dataframe(df.head())
+        if file_ext == ".csv":
+            df = pd.read_csv(file)
+        elif file_ext == ".xlsx":
+            df = pd.read_excel(file)
+        else:
+            st.error(f"Unsupported file type {file_ext}")
+            continue
+        
+     
+        st.write("🔍 Preview the head of the dataframe")
+        st.dataframe(df.head())
+
 
 # data cleaning
 st.subheader(" Data Cleaning Options")
